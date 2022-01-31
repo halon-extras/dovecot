@@ -1,16 +1,17 @@
 function dovecot_auth($opts, $username, $password)
 {
-	$host = $opts["host"];
-	$port = number($opts["port"]);
+	$address = $opts["address"] ?? "127.0.0.1";
+	$port = $opts["port"] ?? 12345;
+	$path = $opts["path"];
 	$timeout = $opts["timeout"] ?? 5;
 	$service = $opts["service"] ?? "smtp";
 	$rip = $opts["rip"];
 	$lip = $opts["lip"];
 	$secured = $opts["secured"] ?? false;
 
-	$socket = Socket(Socket::AF($host), "SOCK_STREAM");
-	if (!$socket->settimeout(number($opts["timeout"] ?? 5))) return -1;
-	if (!$socket->connect($host, $port)) return -1;
+	$socket = Socket($path ? "AF_UNIX" : Socket::AF($address), "SOCK_STREAM");
+	if (!$socket->settimeout($timeout)) return -1;
+	if (!$socket->connect(...($path ? [$path] : [$address, $port]))) return -1;
 
 	$getline = function($socket) {
 		$data = "";

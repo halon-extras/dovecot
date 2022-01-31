@@ -1,3 +1,5 @@
+# Dovecot user authentication
+
 ## dovecot_auth(options, username, password)
 Try to authenticate the username against a dovecot server.
 
@@ -11,8 +13,9 @@ Try to authenticate the username against a dovecot server.
 
 The following options are available in the **options** array.
 
-- host `string` - IP-address of the dovecot server. required
-- port `number` - TCP port. required
+- address `string` - Address of the dovecot server. The default is `127.0.0.1`.
+- port `number` - TCP port of the dovecot server. The default is `12345`.
+- path `string` - Path to a the dovecot unix socket. Mutually exclusive with `address`.
 - timeout `number` - Timeout in seconds. The default is 5 seconds.
 
 There are also some protocol specific flags that may be configured.
