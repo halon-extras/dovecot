@@ -1,6 +1,26 @@
 # Dovecot user authentication
 
-## dovecot_auth(options, username, password)
+## Installation
+
+Follow the [instructions](https://docs.halon.io/manual/comp_install.html#installation) in our manual to add our package repository and then run the below command.
+
+### Ubuntu
+
+```
+apt-get install halon-extras-dovecot
+```
+
+### RHEL
+
+```
+yum install halon-extras-dovecot
+```
+
+## Exported functions
+
+These functions needs to be [imported](https://docs.halon.io/hsl/structures.html#import) from the `extras://dovecot` module path.
+
+### dovecot_auth(options, username, password)
 Try to authenticate the username against a dovecot server.
 
 **Params**
